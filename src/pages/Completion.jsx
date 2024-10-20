@@ -8,30 +8,37 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
+import { CheckCircle } from "lucide-react";
 
 export default function Completion() {
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle className="text-3xl font-bold text-center text-primary">
+    <Card className="w-full max-w-md mx-auto shadow-lg">
+      <CardHeader className="bg-primary text-primary-foreground rounded-t-lg">
+        <CardTitle className="text-3xl font-bold text-center flex items-center justify-center">
+          <CheckCircle className="w-8 h-8 mr-2" />
           KYC Submitted Successfully
         </CardTitle>
-        <CardDescription className="text-center">
+        <CardDescription className="text-center text-primary-foreground/80">
           Thank you for completing the KYC process
         </CardDescription>
       </CardHeader>
-      <CardContent className="text-center">
+      <CardContent className="text-center mt-6">
         <p className="mb-4">
           Your KYC information has been submitted successfully. We will review
           it shortly.
         </p>
-        <p className="mb-4">
+        <p className="mb-4 font-semibold">
           You will be notified once the verification process is complete.
         </p>
       </CardContent>
       <CardFooter className="flex justify-center">
         <Link to="/">
-          <Button variant="outline">Back to Home</Button>
+          <Button
+            variant="outline"
+            className="border-primary text-primary hover:bg-primary/10"
+          >
+            Back to Home
+          </Button>
         </Link>
       </CardFooter>
     </Card>
