@@ -1,23 +1,31 @@
 import supabase, { supabaseUrl } from "./supabase";
 
 export async function submitForm(newCustomer) {
-  // create the image name
+  // ID image name
   const imageName = `${Math.random()}-${newCustomer.image.name}`.replaceAll(
     "/",
     ""
   );
+  const imagePath = `${imageName}`; // Path for ID image in storage
 
-  // the image url path
-  const imagePath = `${supabaseUrl}/storage/v1/object/public/images/${imageName}`;
+  // Customer image name
+  const customerImageName = `${Math.random()}-${
+    newCustomer.customerImage.name
+  }`.replaceAll("/", "");
+  const customerImagePath = `${customerImageName}`; // Path for customer image in storage
 
   try {
-    // 1. create a new customer
-    const { data, error } = await supabase
-      .from("customers")
-      .insert([{ ...newCustomer, image: imagePath }]);
+    // 1. Insert the customer data with the image URLs (to be uploaded next)
+    const { data, error } = await supabase.from("customers").insert([
+      {
+        ...newCustomer,
+        image: `${supabaseUrl}/storage/v1/object/public/images/${imagePath}`,
+        customerImage: `${supabaseUrl}/storage/v1/object/public/images/${customerImagePath}`,
+      },
+    ]);
 
     if (error) {
-      // Check for unique constraint violation (Supabase uses Postgres codes)
+      // Handle unique constraint violation
       if (error.code === "23505") {
         if (error.message.includes("phoneNumber")) {
           throw new Error(
@@ -39,23 +47,33 @@ export async function submitForm(newCustomer) {
       throw new Error("Customer could not be added.");
     }
 
-    // 2. if successful, upload the image to the IMAGES STORAGE
-    const { error: imgError } = await supabase.storage
+    // 2. Upload ID image to Supabase storage
+    const { error: idImageError } = await supabase.storage
       .from("images")
-      .upload(imageName, newCustomer.image);
+      .upload(imagePath, newCustomer.image);
 
-    // 3. Delete the customer if image upload fails
-    if (imgError) {
-      await supabase.from("customers").delete().eq("id", data.id);
-      console.error(imgError);
+    if (idImageError) {
+      await supabase.from("customers").delete().eq("id", data.id); // Rollback customer entry
+      console.error(idImageError);
+      throw new Error("ID image upload failed, form submission canceled.");
+    }
+
+    // 3. Upload Customer image to Supabase storage
+    const { error: customerImageError } = await supabase.storage
+      .from("images")
+      .upload(customerImagePath, newCustomer.customerImage);
+
+    if (customerImageError) {
+      await supabase.from("customers").delete().eq("id", data.id); // Rollback customer entry
+      console.error(customerImageError);
       throw new Error(
-        "Customer ID image could not be uploaded; therefore, the form could not be submitted!"
+        "Customer image upload failed, form submission canceled."
       );
     }
 
-    return data;
+    return data; // Return the customer data if successful
   } catch (err) {
-    console.error(err);
+    console.error("Form submission error:", err);
     throw err;
   }
 }
