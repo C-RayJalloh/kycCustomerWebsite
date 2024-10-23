@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Home from "./pages/Homepage";
 import { Toaster } from "react-hot-toast";
@@ -10,13 +10,13 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <HashRouter>
+      <BrowserRouter basename="/">
         <Routes>
-          <Route index element={<Home />} />
-          <Route path="kycForm" element={<KYCForm />} />
-          <Route path="completion" element={<Completion />} />
+          <Route exact path="/" element={<Home />} />
+          <Route path="/kycForm" element={<KYCForm />} />
+          <Route path="/completion" element={<Completion />} />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
 
       <Toaster
         position="top center"
