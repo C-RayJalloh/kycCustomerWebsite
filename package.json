@@ -1,7 +1,7 @@
 {
   "name": "kycsystem",
-  "homepage": "https://c-rayjalloh.github.io/kycCustomerWebsite/",
-  "private": true,
+  "homepage": "https://c-rayjalloh.github.io/kycCustomerWebsite",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {

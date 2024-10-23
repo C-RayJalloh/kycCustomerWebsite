@@ -10,9 +10,9 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter basename="/">
+      <BrowserRouter basename="/home">
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/home" element={<Home />} />
           <Route path="/kycForm" element={<KYCForm />} />
           <Route path="/completion" element={<Completion />} />
         </Routes>
