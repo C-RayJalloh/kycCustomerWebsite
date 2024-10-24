@@ -1,177 +1,4 @@
 /* eslint-disable no-unused-vars */
-// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-// import { Input } from "@/components/ui/input";
-// import { Button } from "@/components/ui/button";
-// import { UserPlus, Upload, ChevronLeft } from "lucide-react";
-// import { useForm } from "react-hook-form";
-// import { useNavigate } from "react-router-dom";
-// import toast from "react-hot-toast";
-// import { useCreate } from "../../Mutations/useSubmit";
-// import Spinner from "../../../internalApp/src/components/Spinner";
-
-// function KycForm() {
-//   const { isCreating, createMutate } = useCreate();
-//   const navigate = useNavigate();
-//   const {
-//     register,
-//     handleSubmit,
-//     formState: { errors },
-//     reset,
-//   } = useForm();
-
-//   const onSubmit = (data) => {
-//     const newCustomer = {
-//       name: data.fullName,
-//       phoneNumber: data.phoneNumber,
-//       NIN: data.nationalIdNumber,
-//       dob: data.dateOfBirth,
-//       address: data.address,
-//       email: data.email,
-//       created_at: new Date(),
-//       status: "Pending",
-//     };
-
-//     createMutate(
-//       { ...newCustomer, image: data.image[0] },
-//       {
-//         onSuccess: () => {
-//           toast.success("Customer KYC submitted successfully!");
-
-//           // Delay navigation by 3 seconds
-//           setTimeout(() => {
-//             navigate("/completion");
-//           }, 3000);
-
-//           reset(); // Reset the form after submission
-//         },
-//       }
-//     );
-//   };
-
-//   if (isCreating) return <Spinner />;
-
-//   return (
-//     <Card className="max-w-md mx-auto shadow-lg">
-//       <CardHeader className="bg-primary text-primary-foreground rounded-t-lg">
-//         <CardTitle className="text-2xl font-bold text-center">New Customer KYC</CardTitle>
-//       </CardHeader>
-//       <CardContent className="mt-6">
-//         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-//           <div>
-//             <Input
-//               type="text"
-//               placeholder="Enter Full Name"
-//               {...register("fullName", { required: "Full Name is required" })}
-//               className="bg-secondary text-secondary-foreground border-primary/20 focus:border-primary"
-//             />
-//             {errors.fullName && (
-//               <p className="text-destructive text-sm mt-1">{errors.fullName.message}</p>
-//             )}
-//           </div>
-//           <div>
-//             <Input
-//               type="email"
-//               placeholder="Enter email"
-//               {...register("email", {
-//                 required: "Email is required",
-//                 pattern: { value: /^\S+@\S+$/i, message: "Enter a valid email" },
-//               })}
-//               className="bg-secondary text-secondary-foreground border-primary/20 focus:border-primary"
-//             />
-//             {errors.email && (
-//               <p className="text-destructive text-sm mt-1">{errors.email.message}</p>
-//             )}
-//           </div>
-//           <div>
-//             <Input
-//               type="tel"
-//               placeholder="Enter Phone Number"
-//               {...register("phoneNumber", {
-//                 required: "Phone Number is required",
-//               })}
-//               className="bg-secondary text-secondary-foreground border-primary/20 focus:border-primary"
-//             />
-//             {errors.phoneNumber && (
-//               <p className="text-destructive text-sm mt-1">{errors.phoneNumber.message}</p>
-//             )}
-//           </div>
-//           <div>
-//             <Input
-//               type="text"
-//               placeholder="Enter National ID Number - NIN"
-//               {...register("nationalIdNumber", {
-//                 required: "National ID is required",
-//               })}
-//               className="bg-secondary text-secondary-foreground border-primary/20 focus:border-primary"
-//             />
-//             {errors.nationalIdNumber && (
-//               <p className="text-destructive text-sm mt-1">{errors.nationalIdNumber.message}</p>
-//             )}
-//           </div>
-//           <div>
-//             <Input
-//               type="date"
-//               placeholder="Date of Birth"
-//               {...register("dateOfBirth", {
-//                 required: "Date of Birth is required",
-//               })}
-//               className="bg-secondary text-secondary-foreground border-primary/20 focus:border-primary"
-//             />
-//             {errors.dateOfBirth && (
-//               <p className="text-destructive text-sm mt-1">{errors.dateOfBirth.message}</p>
-//             )}
-//           </div>
-//           <div>
-//             <Input
-//               type="text"
-//               placeholder="Enter Address"
-//               {...register("address", { required: "Address is required" })}
-//               className="bg-secondary text-secondary-foreground border-primary/20 focus:border-primary"
-//             />
-//             {errors.address && (
-//               <p className="text-destructive text-sm mt-1">{errors.address.message}</p>
-//             )}
-//           </div>
-//           <div className="flex items-center space-x-2">
-//             <Input
-//               type="file"
-//               accept="image/*"
-//               {...register("image", { required: "Image is required" })}
-//               className="hidden"
-//               id="image-upload"
-//             />
-//             <label
-//               htmlFor="image-upload"
-//               className="flex items-center px-4 py-2 bg-secondary text-secondary-foreground rounded cursor-pointer hover:bg-secondary/90"
-//             >
-//               <Upload className="w-4 h-4 mr-2" />
-//               Upload Image
-//             </label>
-//             {errors.image && (
-//               <p className="text-destructive text-sm">{errors.image.message}</p>
-//             )}
-//           </div>
-//           <div className="flex justify-between gap-2">
-//             <Button type="submit" disabled={isCreating} className="bg-primary hover:bg-primary/90 text-primary-foreground">
-//               <UserPlus className="w-4 h-4 mr-2" />
-//               {isCreating ? "Submitting..." : "Submit KYC"}
-//             </Button>
-
-//             <Button type="button" onClick={() => navigate(-1)} variant="outline" className="border-primary text-primary hover:bg-primary/10">
-//               <ChevronLeft className="w-4 h-4 mr-2" />
-//               Go Back
-//             </Button>
-//           </div>
-//         </form>
-//       </CardContent>
-//     </Card>
-//   );
-// }
-
-// export default KycForm;
-
-
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -270,7 +97,7 @@ function KycForm() {
   };
 
   return (
-    <Card className="max-w-2xl mx-auto shadow-lg">
+    <Card className="max-w-2xl mx-auto shadow-lg mt-5">
       <CardHeader className="bg-primary text-primary-foreground rounded-t-lg">
         <CardTitle className="text-2xl font-bold text-center">
           New Customer KYC
@@ -445,7 +272,7 @@ function KycForm() {
                       className="flex items-center px-4 py-2 bg-secondary text-secondary-foreground rounded cursor-pointer hover:bg-secondary/90"
                     >
                       <Upload className="w-4 h-4 mr-2" />
-                      Upload Image
+                      Upload ID Card
                     </label>
                   </>
                 )}

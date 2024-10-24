@@ -12,7 +12,7 @@ import { CheckCircle } from "lucide-react";
 
 export default function Completion() {
   return (
-    <Card className="w-full max-w-md mx-auto shadow-lg">
+    <Card className="w-full max-w-md mx-auto shadow-lg mt-10">
       <CardHeader className="bg-primary text-primary-foreground rounded-t-lg">
         <CardTitle className="text-3xl font-bold text-center flex items-center justify-center">
           <CheckCircle className="w-8 h-8 mr-2" />
