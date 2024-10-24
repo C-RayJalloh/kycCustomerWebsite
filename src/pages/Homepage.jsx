@@ -49,13 +49,13 @@ export default function Home() {
           </li>
           <li className="flex items-center">
             <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center mr-2">
-              3
+              4
             </span>
             Take a clear snapshot of yourself using your camera
           </li>
           <li className="flex items-center">
             <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center mr-2">
-              4
+              5
             </span>
             A clear image of your National ID
           </li>
