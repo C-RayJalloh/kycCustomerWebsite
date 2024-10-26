@@ -100,7 +100,7 @@ function KycForm() {
     <Card className="max-w-2xl mx-auto shadow-lg mt-5">
       <CardHeader className="bg-primary text-primary-foreground rounded-t-lg">
         <CardTitle className="text-2xl font-bold text-center">
-          New Customer KYC
+          Customer KYC FORM
         </CardTitle>
       </CardHeader>
       <CardContent className="mt-6">
