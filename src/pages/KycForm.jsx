@@ -18,6 +18,7 @@ import { useCreate } from "../../Mutations/useSubmit";
 import toast from "react-hot-toast";
 
 function KycForm() {
+  const [selectedFile, setSelectedFile] = useState(null);
   const navigate = useNavigate();
   const { isCreating, createMutate } = useCreate();
   const {
@@ -252,7 +253,7 @@ function KycForm() {
               </div>
             </div>
 
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-4">
               <Controller
                 name="uploadedImage"
                 control={control}
@@ -262,7 +263,11 @@ function KycForm() {
                     <Input
                       type="file"
                       accept="image/*"
-                      onChange={(e) => onChange(e.target.files)}
+                      onChange={(e) => {
+                        const file = e.target.files[0];
+                        onChange(e.target.files);
+                        setSelectedFile(file);
+                      }}
                       className="hidden"
                       id="image-upload"
                       {...field}
@@ -277,6 +282,11 @@ function KycForm() {
                   </>
                 )}
               />
+              {selectedFile && (
+                <div className="text-sm text-gray-600 truncate max-w-xs">
+                  {selectedFile.name}
+                </div>
+              )}
             </div>
           </div>
 
